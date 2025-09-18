@@ -9,6 +9,11 @@ public class AddToQueueMPage extends BaseMobilePage implements IAddToQueuePage {
     }
 
     @Override
+    public void verifyPage() {
+
+    }
+
+    @Override
     public String getBannerTitle() {
         return "";
     }

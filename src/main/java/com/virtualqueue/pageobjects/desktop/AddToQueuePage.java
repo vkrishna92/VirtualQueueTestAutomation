@@ -35,6 +35,16 @@ public class AddToQueuePage extends BaseDesktopPage implements IAddToQueuePage {
     }
 
     @Override
+    public void verifyPage() {
+        waitForElementToBePresent(formTitle);
+        waitForElementToBePresent(queueCount);
+        waitForElementToBePresent(avgWaitTimeInMins);
+        waitForElementToBePresent(partySizeList);
+        waitForElementToBePresent(joinQueueBtn);
+    }
+
+
+    @Override
     public String getBannerTitle() {
         log.info("Getting banner title");
         return  driver.findElement(queueTitle).getText();

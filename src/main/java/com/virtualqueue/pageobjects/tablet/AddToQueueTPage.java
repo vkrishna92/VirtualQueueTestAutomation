@@ -9,6 +9,11 @@ public class AddToQueueTPage extends BaseTabletPage implements IAddToQueuePage {
     }
 
     @Override
+    public void verifyPage() {
+
+    }
+
+    @Override
     public String getBannerTitle() {
         return "";
     }

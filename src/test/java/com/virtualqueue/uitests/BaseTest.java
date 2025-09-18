@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeSuite;
 public class BaseTest {
     protected WebDriver driver;
     protected final String baseUrl = "http://localhost:4200/";
-    protected final String platform = "Mobile";
+    protected final String platform = "Desktop";
     private final Logger log = LoggerHelper.getLogger(BaseTest.class);
     @BeforeSuite
     public void setupSuite() {
