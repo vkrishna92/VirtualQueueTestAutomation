@@ -1,7 +1,9 @@
 package com.virtualqueue.uitests;
 
 import com.virtualqueue.pageobjects.pagefactory.AddToPageFactory;
+import com.virtualqueue.pageobjects.pagefactory.ViewToCustomerStatusPageFactory;
 import com.virtualqueue.pageobjects.pagerepository.IAddToQueuePage;
+import com.virtualqueue.pageobjects.pagerepository.IViewToCustomerStatusPage;
 import com.virtualqueue.utils.LoggerHelper;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
@@ -11,21 +13,36 @@ import org.testng.annotations.Test;
 public class AddToQueueTest extends BaseTest{
 
     private final Logger log = LoggerHelper.getLogger(BaseTest.class);
-    private final String pageUrl = "p/add-to-queue/3fa85f64-5717-4562-b3fc-2c963f66afa6";
+    private final String pageUrl = "p/add-to-queue/";
     IAddToQueuePage addToQueue;
+
     @BeforeTest
     public void testSetup() {
-        driver.get(baseUrl + pageUrl);
+        driver.get(baseUrl + pageUrl + queueId);
         addToQueue = AddToPageFactory.getPage(driver, platform);
+        // check if addToQueue is null
         if (addToQueue == null) {
-            log.info("Unable to initialize AddToQueue Page object for platform " + platform);
+            log.error("AddToQueue page is null");
+            throw new RuntimeException("AddToQueue page is null");
         }
     }
 
     @Test
     public void verifyAddToQueue() {
         Assert.assertEquals(addToQueue.getBannerTitle(), "Bella Vista Bistro");
-        Assert.assertEquals(addToQueue.getQueueCount(), "0");
-        Assert.assertEquals(addToQueue.getAvgWaitTimeInMins(), "0");
+        Assert.assertEquals(addToQueue.getFormTitle(), "Reserve Your Table");
+    }
+
+    @Test
+    public void verifyAddToQueueForm() {
+        addToQueue.verifyPage();
+        addToQueue.enterName("Test User");
+        addToQueue.setPartySize(2);
+        addToQueue.clickOnJoinQueueButton();
+        IViewToCustomerStatusPage viewToCustomerStatus = ViewToCustomerStatusPageFactory.getPage(driver, platform);
+        viewToCustomerStatus.verifyPage();
+        Assert.assertEquals(viewToCustomerStatus.getName(), "Test User");
+        Assert.assertEquals(viewToCustomerStatus.getPartySize(), "2");
+        Assert.assertEquals(viewToCustomerStatus.getStatus(), "WAITING");
     }
 }

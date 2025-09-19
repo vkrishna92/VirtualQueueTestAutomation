@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public abstract class BasePage {
+public class BasePage {
     protected WebDriverWait wait;
     public BasePage(WebDriver driver) {
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -26,6 +26,4 @@ public abstract class BasePage {
     protected void waitForTextToBePresent(By locator, String text) {
         wait.until(ExpectedConditions.textToBe(locator, text));
     }
-
-    public abstract void verifyPage();
 }
