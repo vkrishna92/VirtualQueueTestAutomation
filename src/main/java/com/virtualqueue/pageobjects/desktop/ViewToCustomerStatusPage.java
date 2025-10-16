@@ -10,8 +10,8 @@ public class ViewToCustomerStatusPage extends BaseDesktopPage implements IViewTo
 
     private final By formTitle = By.xpath("//h2[@class='text-center']");
     private final By status = By.xpath("//div[contains(@class,'status-badge')]");
-    private final By position = By.xpath("//div[@class='container']/div[@class='queue-stats']/div[@class='stat-item'][1]/span[@class='stat-count']");
-    private final By avgWaitTime = By.xpath("//div[@class='container']/div[@class='queue-stats']/div[@class='stat-item'][1]/span[@class='stat-count']");
+    private final By position = By.xpath("(//span[@class='stat-count'])[1]");
+    private final By avgWaitTime = By.xpath("(//span[@class='stat-count'])[2]");
 
     // form elements
     private final By name = By.xpath("//div[@class='customer-details']/div[1]/span[2]");
@@ -43,7 +43,6 @@ public class ViewToCustomerStatusPage extends BaseDesktopPage implements IViewTo
         waitForElementToBePresent(joinedAt);
         waitForElementToBePresent(servedAt);
         waitForElementToBePresent(refreshButton);
-        waitForElementToBePresent(leaveQueueButton);
     }
 
     @Override
