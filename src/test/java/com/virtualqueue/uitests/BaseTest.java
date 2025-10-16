@@ -5,6 +5,7 @@ import com.virtualqueue.utils.PropertyReader;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
@@ -30,7 +31,7 @@ public class BaseTest {
         log.info("Base Url: {}%n queueId: {}%n platform: {}%n", baseUrl, queueId, platform);;
 
         // initializing driver
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }
