@@ -21,7 +21,7 @@ public class AddToQueuePage extends BaseDesktopPage implements IAddToQueuePage {
     private final By formTitle = By.xpath("//div[@class='container']/h2");
     private final By queueCount = By.xpath("//div[@class='container']/div[@class='queue-stats']/div[@class='stat-item'][1]/span[@class='stat-count']");
     private final By avgWaitTimeInMins = By.xpath("//div[@class='container']/div[@class='queue-stats']/div[@class='stat-item'][1]/span[@class='stat-count']");
-    private final By nameInput = By.xpath("//input[@ng-reflect-name='customerName']");
+    private final By nameInput = By.xpath("//input[@formcontrolname='customerName']");
     private final By partySizeList = By.xpath("//nz-radio-group/label");
     private final By joinQueueBtn = By.xpath("//button[contains(@class,'join-queue-button')]");
 
@@ -36,6 +36,7 @@ public class AddToQueuePage extends BaseDesktopPage implements IAddToQueuePage {
 
     @Override
     public void verifyPage() {
+        waitForElementToBePresent(queueTitle);
         waitForElementToBePresent(formTitle);
         waitForElementToBePresent(queueCount);
         waitForElementToBePresent(avgWaitTimeInMins);

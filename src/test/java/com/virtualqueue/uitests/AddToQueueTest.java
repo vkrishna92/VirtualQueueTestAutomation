@@ -7,7 +7,7 @@ import com.virtualqueue.pageobjects.pagerepository.IViewToCustomerStatusPage;
 import com.virtualqueue.utils.LoggerHelper;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class AddToQueueTest extends BaseTest{
@@ -16,7 +16,7 @@ public class AddToQueueTest extends BaseTest{
     private final String pageUrl = "p/add-to-queue/";
     IAddToQueuePage addToQueue;
 
-    @BeforeTest
+    @BeforeClass
     public void testSetup() {
         driver.get(baseUrl + pageUrl + queueId);
         addToQueue = AddToPageFactory.getPage(driver, platform);
@@ -29,7 +29,8 @@ public class AddToQueueTest extends BaseTest{
 
     @Test
     public void verifyAddToQueue() {
-        Assert.assertEquals(addToQueue.getBannerTitle(), "Bella Vista Bistro");
+        addToQueue.verifyPage();
+        Assert.assertEquals(addToQueue.getBannerTitle(), "Test Store");
         Assert.assertEquals(addToQueue.getFormTitle(), "Reserve Your Table");
     }
 
