@@ -36,7 +36,7 @@ public class BaseTest {
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
             driver.manage().window().maximize();
             
             log.info("Driver initialized successfully.");
